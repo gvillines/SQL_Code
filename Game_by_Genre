@@ -6,3 +6,31 @@ WHERE glf.game_name LIKE 'Blox Fruit';
 # SQL query to search a dataset that I created using the game Name in one table
 # with the game genre in another table that lists the game names and the corresponding genre
 
+#using the previous query you can then narrow down based on Total_Visits and a certain Date
+
+SELECT
+    glf.game_name,
+    gg.genre_name,
+    (
+        SELECT SUM(visits)
+        FROM game_visits
+        WHERE game_id = glf.game_id
+        AND visit_date = 'your_date'
+    ) AS total_visits
+FROM Game_Long_Format AS glf
+JOIN game_genre AS gg ON glf.genre_id = gg.genre_id;
+
+#Outer Query selects the game name and genre using a join between 
+#Game_Long_Format and game_genre Tables
+#Inner Query calculates the total visits for each game on the specified date
+# by summing the visits from the game_visits table 
+
+
+
+SELECT glf.game_name, gg.genre, glf.total_visits
+FROM Game_Long_Format AS glf
+JOIN Game_Genre AS gg ON glf.game_name = gg.game_name
+WHERE glf.date >= 'start_date' AND glf.date <= 'end_date';
+
+#retrieves the game name, genre, and total visits from the Game_Long_Format 
+# table and the Game_Genre table for games within the specified date range
