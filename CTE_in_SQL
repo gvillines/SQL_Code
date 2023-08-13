@@ -1,0 +1,22 @@
+WITH GameDataWithGenre AS (
+    SELECT
+        glf.name AS game_name,
+        gg.genre AS game_genre,
+        glf.total_visits,
+        glf.date
+    FROM
+        Game_Long_Format AS glf
+    JOIN
+        Game_Genre AS gg ON glf.name = gg.name
+    WHERE
+        glf.date = '2023-08-13' -- Replace with your desired date
+)
+SELECT
+    game_name,
+    game_genre,
+    total_visits,
+    date
+FROM
+    GameDataWithGenre;
+#The GameDataWithGenre CTE is defined to retrieve the desired columns from the tables and join them based on the "name" column.
+#The outer query selects columns from the CTE.
