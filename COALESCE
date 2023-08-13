@@ -1,0 +1,4 @@
+UPDATE your_table
+SET your_column = COALESCE(your_column, 'replacement_value')
+WHERE your_column IS NULL;
+# query to remove NULL values
