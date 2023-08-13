@@ -1,0 +1,8 @@
+SELECT glf.game_name, gg.genre_name
+FROM Game_Long_Format AS glf
+JOIN game_genre AS gg ON glf.genre_id = gg.genre_id
+WHERE glf.game_name LIKE 'Blox Fruit';
+
+# SQL query to search a dataset that I created using the game Name in one table
+# with the game genre in another table that lists the game names and the corresponding genre
+
